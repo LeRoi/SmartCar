@@ -2,8 +2,8 @@
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
-namespace SmartCar {
-    public class Car {
+namespace SmartCar.Entities {
+    public class Car : Entity {
         public static float TURN_SPEED = (1 / 16f);
         public static float ACCELERATION_RATE = (1 / 16f);
         public static float VELOCITY_FALLOFF = (1 / 32f);
@@ -11,15 +11,11 @@ namespace SmartCar {
         public static float MAX_ACCELERATION = 1f;
         public enum Action { ACCELERATE, DECELERATE, TURN_LEFT, TURN_RIGHT };
 
-        public Texture2D sprite;
-        public Vector2 position;
         public float angle;
         public float acceleration;
         public float velocity;
 
-        public Car(Texture2D sprite, Vector2 position, float angle) {
-            this.sprite = sprite;
-            this.position = position;
+        public Car(Texture2D sprite, Vector2 position, float angle) : base(sprite, position) {
             this.angle = 0;
             acceleration = 0;
             velocity = 0;
@@ -66,12 +62,7 @@ namespace SmartCar {
             velocity = Math.clamp(velocity, 0, MAX_VELOCITY);
         }
 
-        public Rectangle getRect() {
-            return new Rectangle((int) position.X, (int) position.Y,
-                sprite.Width, sprite.Height);
-        }
-
-        public void draw(SpriteBatch batch) {
+        public new void draw(SpriteBatch batch) {
             batch.Draw(sprite, getRect(), null, Color.White, angle,
                 new Vector2(sprite.Width / 2, sprite.Height / 2), SpriteEffects.None, 0);
         }

@@ -42,7 +42,8 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Car.cs" />
+    <Compile Include="Entities\Car.cs" />
+    <Compile Include="Entities\Entity.cs" />
     <Compile Include="Math.cs" />
     <Compile Include="SmartCar.cs" />
     <Compile Include="Program.cs" />

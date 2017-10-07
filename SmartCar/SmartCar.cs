@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
+using SmartCar.Entities;
 
 namespace SmartCar {
     public class SmartCar : Game {
@@ -10,6 +11,7 @@ namespace SmartCar {
         Sprites sprites;
 
         Car car;
+        Entity parkingSpace;
 
         public SmartCar() {
             graphics = new GraphicsDeviceManager(this);
@@ -28,6 +30,7 @@ namespace SmartCar {
             base.Initialize();
 
             car = new Car(sprites[Sprites.CAR], new Vector2(150, 150), 0);
+            parkingSpace = new Entity(sprites[Sprites.EASY_PARKING], new Vector2(400, 275));
         }
 
         /// <summary>
@@ -35,11 +38,8 @@ namespace SmartCar {
         /// all of your content.
         /// </summary>
         protected override void LoadContent() {
-            // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             sprites = new Sprites(Content);
-
-            // TODO: use this.Content to load your game content here
         }
 
         /// <summary>
@@ -80,6 +80,7 @@ namespace SmartCar {
 
             spriteBatch.Begin();
 
+            parkingSpace.draw(spriteBatch);
             car.draw(spriteBatch);
 
             spriteBatch.End();
